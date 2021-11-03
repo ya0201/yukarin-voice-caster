@@ -5,3 +5,6 @@ Description=Play yukarin sleep preparation voice
 Type=oneshot
 EnvironmentFile=%h/yukarin-voice-caster/.env
 ExecStart=%h/yukarin-voice-caster/main.py sleep-preparation.mp3
+
+[Install]
+WantedBy=multi-user.target
