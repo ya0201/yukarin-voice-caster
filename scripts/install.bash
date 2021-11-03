@@ -2,6 +2,9 @@
 
 mkdir -p ${HOME}/.config/systemd/user
 cp ./services/yukarin-voice-caster* ${HOME}/.config/systemd/user
+for f in $(find services -name *.service); do
+  systemctl --user enable $(basename $f)
+done
 for f in $(find services -name *.timer); do
   systemctl --user enable $(basename $f)
 done
