@@ -1,0 +1,6 @@
+[Unit]
+Description=Play yukarin melatonin voice
+
+[Service]
+Type=oneshot
+ExecStart=%h/yukarin-voice-caster/main.py melatonin.mp3

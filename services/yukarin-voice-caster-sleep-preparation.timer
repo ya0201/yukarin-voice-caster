@@ -1,0 +1,8 @@
+[Unit]
+Description=Play yukarin sleep preparation voice
+
+[Timer]
+OnCalendar=*-*-* 13:00
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,6 @@
+[Unit]
+Description=Play yukarin sleep preparation voice
+
+[Service]
+Type=oneshot
+ExecStart=%h/yukarin-voice-caster/main.py sleep-preparation.mp3
