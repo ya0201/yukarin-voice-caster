@@ -3,4 +3,5 @@ Description=Play yukarin melatonin voice
 
 [Service]
 Type=oneshot
+EnvironmentFile=%h/yukarin-voice-caster/.env
 ExecStart=%h/yukarin-voice-caster/main.py melatonin.mp3
