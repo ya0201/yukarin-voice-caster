@@ -12,8 +12,8 @@ Description=${PREFIX}${name}.service: the service to play yukarin ${name} voice
 
 [Service]
 Type=oneshot
-EnvironmentFile=$(PWD)/.env
-ExecStart=$(PWD)/main.py ${name}.mp3
+EnvironmentFile=$(pwd)/.env
+ExecStart=$(pwd)/main.py ${name}.mp3
 
 [Install]
 WantedBy=multi-user.target
