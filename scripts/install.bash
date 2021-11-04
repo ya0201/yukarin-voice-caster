@@ -55,6 +55,7 @@ function main() {
     sudo systemctl enable ${PREFIX}${name}.service
     generate_timer "$name" "$systemd_dir" "$onCalendar"
     sudo systemctl enable ${PREFIX}${name}.timer
+    sudo systemctl start ${PREFIX}${name}.timer
   done
 
   sudo systemctl daemon-reload
