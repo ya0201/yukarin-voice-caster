@@ -20,6 +20,7 @@ function main() {
   done
 
   systemctl --user daemon-reload
+  systemctl --user reset-failed
 }
 
 main
