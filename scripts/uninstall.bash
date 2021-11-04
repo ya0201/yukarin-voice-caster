@@ -14,9 +14,9 @@ function main() {
     local name=$(awk -v i=$i 'NR==i+1' <<< "$name_lines" | sed -ne "s;- name: '\(.*\)';\1;p")
 
     systemctl --user disable ${PREFIX}${name}.service
-    rm ${user_systemd_dir}/${PREFIX}${name}.service
+    rm -f ${user_systemd_dir}/${PREFIX}${name}.service
     systemctl --user disable ${PREFIX}${name}.timer
-    rm ${user_systemd_dir}/${PREFIX}${name}.timer
+    rm -f ${user_systemd_dir}/${PREFIX}${name}.timer
   done
 
   systemctl --user daemon-reload
