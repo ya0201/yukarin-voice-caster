@@ -4,9 +4,9 @@ PREFIX='yukarin-voice-caster-'
 
 function generate_service() {
   local name="$1"
-  local user_systemd_dir="$2"
+  local systemd_dir="$2"
 
-  cat <<EOS > ${user_systemd_dir}/${PREFIX}${name}.service
+  sudo tee ${systemd_dir}/${PREFIX}${name}.service <<EOS
 [Unit]
 Description=${PREFIX}${name}.service: the service to play yukarin ${name} voice
 
@@ -22,10 +22,10 @@ EOS
 
 function generate_timer() {
   local name="$1"
-  local user_systemd_dir="$2"
+  local systemd_dir="$2"
   local onCalendar="$3"
 
-  cat <<EOS > ${user_systemd_dir}/${PREFIX}${name}.timer
+  sudo tee ${systemd_dir}/${PREFIX}${name}.timer <<EOS
 [Unit]
 Description=${PREFIX}${name}.timer: triggers ${PREFIX}${name}.service
 
@@ -38,8 +38,7 @@ EOS
 }
 
 function main() {
-  local user_systemd_dir="${HOME}/.config/systemd/user"
-  mkdir -p $user_systemd_dir
+  local systemd_dir="/etc/systemd/system"
 
   local routines_yaml="$(cat routines.yaml)"
   local name_lines=$(grep 'name:' <<< "$routines_yaml")
@@ -51,13 +50,13 @@ function main() {
     local name=$(awk -v i=$i 'NR==i+1' <<< "$name_lines" | sed -ne "s;- name: '\(.*\)';\1;p")
     local onCalendar=$(awk -v i=$i 'NR==i+1' <<< "$onCalendar_lines" | sed -ne "s;  onCalendar: '\(.*\)';\1;p")
 
-    generate_service "$name" "$user_systemd_dir"
-    systemctl --user enable ${PREFIX}${name}.service
-    generate_timer "$name" "$user_systemd_dir" "$onCalendar"
-    systemctl --user enable ${PREFIX}${name}.timer
+    generate_service "$name" "$systemd_dir"
+    sudo systemctl enable ${PREFIX}${name}.service
+    generate_timer "$name" "$systemd_dir" "$onCalendar"
+    sudo systemctl enable ${PREFIX}${name}.timer
   done
 
-  systemctl --user daemon-reload
+  sudo systemctl daemon-reload
 }
 
 main
