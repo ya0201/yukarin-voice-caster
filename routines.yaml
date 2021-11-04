@@ -1,0 +1,5 @@
+# timezone: utc
+- name: 'melatonin'
+  onCalendar: '*-*-* 12:00'
+- name: 'sleep-preparation'
+  onCalendar: '*-*-* 13:00'
