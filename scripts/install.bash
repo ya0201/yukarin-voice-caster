@@ -42,14 +42,12 @@ function main() {
   local systemd_dir="/etc/systemd/system"
 
   local routines_yaml="$(cat routines.yaml)"
-  local name_lines=$(grep 'name:' <<< "$routines_yaml")
-  local onCalendar_lines=$(grep 'onCalendar: ' <<< "$routines_yaml")
-  local len=$(wc -l <<< "$name_lines")
+  local len=$(python3 -c 'import sys, yaml; y=yaml.safe_load(sys.stdin.read()); print(len(y))' <<< "$routines_yaml")
 
   [[ $len -le 0 ]] && return 0
   for i in $( seq 0 $((len - 1)) ); do
-    local name=$(awk -v i=$i 'NR==i+1' <<< "$name_lines" | sed -ne "s;- name: '\(.*\)';\1;p")
-    local onCalendar=$(awk -v i=$i 'NR==i+1' <<< "$onCalendar_lines" | sed -ne "s;  onCalendar: '\(.*\)';\1;p")
+    local name=$(python3 -c "import sys, yaml; y=yaml.safe_load(sys.stdin.read()); print(y[$i]['name'])" <<< "$routines_yaml")
+    local onCalendar=$(python3 -c "import sys, yaml; y=yaml.safe_load(sys.stdin.read()); print(y[$i]['onCalendar'])" <<< "$routines_yaml")
 
     generate_service "$name" "$systemd_dir"
     sudo systemctl enable ${PREFIX}${name}.service
