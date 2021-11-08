@@ -3,3 +3,5 @@
   onCalendar: '*-*-* 12:00'
 - name: sleep-preparation
   onCalendar: '*-*-* 13:00'
+- name: morning
+  onCalendar: '*-*-* 0:00'
