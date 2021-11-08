@@ -8,5 +8,10 @@
 
 ## usage
 ```shell
+# prepare .env file
+$ cp example.env .env
+$ vim .env
+
+# install services
 $ make install
 ```
