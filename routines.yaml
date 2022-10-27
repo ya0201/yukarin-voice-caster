@@ -1,5 +1,12 @@
 # timezone: utc
-- name: melatonin
-  onCalendar: '*-*-* 13:00'
+- name: last-order
+  onCalendar: '*-*-* 11:50'
+- name: bath-preparation
+  onCalendar: '*-*-* 12:00'
+- name: lights-out
+  onCalendar: '*-*-* 12:30'
 - name: sleep-preparation
-  onCalendar: '*-*-* 14:00'
+  onCalendar: '*-*-* 13:30'
+  # test
+- name: melatonin
+  onCalendar: '*-*-* 06:10'
