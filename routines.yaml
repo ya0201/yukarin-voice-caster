@@ -1,9 +1,7 @@
 # timezone: utc
-- name: last-order
-  onCalendar: '*-*-* 11:50'
 - name: bath-preparation
-  onCalendar: '*-*-* 12:00'
-- name: lights-out
   onCalendar: '*-*-* 12:30'
+- name: lights-out
+  onCalendar: '*-*-* 13:00'
 - name: sleep-preparation
-  onCalendar: '*-*-* 13:30'
+  onCalendar: '*-*-* 14:00'
