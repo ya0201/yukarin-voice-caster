@@ -3,5 +3,3 @@
   onCalendar: '*-*-* 12:30'
 - name: lights-out
   onCalendar: '*-*-* 13:00'
-- name: sleep-preparation
-  onCalendar: '*-*-* 14:00'
